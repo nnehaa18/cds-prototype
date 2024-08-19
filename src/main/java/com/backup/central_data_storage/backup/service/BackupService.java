@@ -41,30 +41,6 @@ public class BackupService {
   @Autowired
   private S3Service s3Service;
 
-//  public void saveBackupInfo(BackupPayload backupPayload) {
-//    ProcessBuilder processBuilder = new ProcessBuilder("tar --force-local -czvg \"C:/Users/NEHA/Desktop/poc/snapshot-file\" -f \"C:/Users/NEHA/Desktop/poc/backup-1.tar.gz\" \"C:/Users/NEHA/Desktop/poc/back\n"
-//        + "up\" \"C:/Users/NEHA/Desktop/file1\"");
-//    try {
-//      Process process = processBuilder.start();
-//    }
-//    catch (IOException ex){
-//      System.out.println("Exception occurred: " +ex);
-//    }
-//
-//  }
-
-
-//public void saveBackupInfo() {
-//  File file = new File("C:\\Users\\NEHA\\Desktop\\poc\\backup.zip");
-//  MultipartFile multipartFile = null;
-//  try {
-//    multipartFile = new MockMultipartFile("backup.zip", new FileInputStream(new File("C:\\Users\\NEHA\\Desktop\\poc\\backup.zip")));
-//    s3Service.uploadFile("backup.zip", multipartFile);
-//  } catch (IOException e) {
-//    throw new RuntimeException(e);
-//  }
-//}
-
   public BackupInfo saveBackupInfo(BackupPayload backupPayload) throws IOException, ParseException {
     List<BackupInfo> backupInfoList =  backupRepository.findByBackupLocation(backupPayload.getBackupLocation());
     BackupInfo backupInfo = new BackupInfo();
