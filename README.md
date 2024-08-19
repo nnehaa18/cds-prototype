@@ -26,6 +26,22 @@ Note: This project is focused on the backend, as the frontend could not be devel
      This API logic prepares the backup script with user selected values
 4. Similarly, the restore API marks the flag true in POJO, which results in the restore scheduler to execute restoration scripts
 5. the schedulers are created to process and execute scripts, returning the backup compressed folders, which are then stored on to the local or cloud storage as per user's selection.
+6. Backup scheduler runs everyday at 12AM.
+7. Backup restoration scheduler runs everyday 12PM but executes logic only when user opts for restoration
 
 
 
+# Scripts
+Linux script for full and incremental backups
+1. # Backup:  tar --force-local -czvg "backup-location/snapshot-file" -f "backup-location/backup-1.tar.gz" "folder to be backed up"
+2. # Restore: tar --force-local -xvf "backup folder.tar.gz" -C "restore folder location"
+
+Windows script for full and incremental backups
+Pre-requisites: 7-zip software to be installed on system in order to run compression and backup
+1. # Full Backup:  7z a C:\Users\NEHA\Desktop\poc\backup.7z C:\Users\NEHA\Desktop\poc\backup\* -x!*/
+2. # Incremental Backup: 7z u C:\Users\NEHA\Desktop\poc\backup.7z -u- -up1q1r3x1y1z0w1!C:\Users\NEHA\Desktop\poc\incremental-3.7z C:\Users\NEHA\Desktop\poc\backup\* -x!*/
+3. # Restore: 7z x -y C:\Users\NEHA\Desktop\poc\incremental-7.7z -oC:\Users\NEHA\Desktop\poc\restore
+
+# Proposed and future features that can be added to enhance implementation
+1. Instead of hardcoded schedulers, dynamic scheduling can be opted based on user input.
+2. Frontend implementation
